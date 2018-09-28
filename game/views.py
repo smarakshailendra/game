@@ -57,6 +57,8 @@ class ProcessDetailsView(generics.RetrieveUpdateDestroyAPIView):
         update_data.pop("id")
         duration = randint(15, 31)
         update_data["duration"] = duration
+        current_time = datetime.datetime.now()
+        update_data["time"] = current_time
         serializer = ProcessSerializer(data=update_data)
         if serializer.is_valid():
             serializer.save()
@@ -78,6 +80,8 @@ class ProcessDetailsView(generics.RetrieveUpdateDestroyAPIView):
         update_data.pop("id")
         duration = randint(15, 31)
         update_data["duration"] = duration
+        current_time = datetime.datetime.now()
+        update_data["time"] = current_time
         serializer = ProcessSerializer(data=update_data)
         if serializer.is_valid():
             serializer.save()
@@ -92,6 +96,8 @@ class ProcessDetailsView(generics.RetrieveUpdateDestroyAPIView):
         data["method_type"] = request.META["REQUEST_METHOD"]
         update_data = copy.deepcopy(data)
         update_data.pop("id")
+        current_time = datetime.datetime.now()
+        update_data["time"] = current_time
         serializer = ProcessSerializer(data=update_data)
         if serializer.is_valid():
             serializer.save()
@@ -107,4 +113,5 @@ class StatView(generics.ListCreateAPIView):
         response = utils.get_stat_response(data)
 
         return Response(response)
+
 
